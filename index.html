@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expanse Tracker</title>
+    <link rel="stylesheet" href="css-reset.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <main>
+        <h2 id="balance" class="balance">Balance: JS Value Here</h2>
+        <div class="add-expense">
+            <select name="etType" id="etType" aria-label="Type">
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+            </select>
+            <input type="text" name="description" id="etDesc" maxlength="100" placeholder="Description">
+            <input type="number" name="amount" id="etAmount" maxlength="100" placeholder="Amount">
+            <button type="submit" id="etAdd">Add</button>
+        </div>
+        <div class="results">
+            <div id="etExpense" class="result">
+                <h3 class="result-heading">Expense</h3>
+                <section>
+
+                </section>
+            </div>
+            <div id="etIncome" class="result">
+                <h3 class="result-heading">Income</h3>
+                <section>
+
+                </section>
+            </div>
+        </div>
+    </main>
+    <!-- Notes on time:
+         1 hour for basic html structure and css names
+         1 hour JS for basics of showing content
+            included being distracted
+
+            To do next: 
+                Set up git for this project
+                get total amount for expenses
+                move on to total income
+                Delete items 
+                    rerun function for totals
+                Update total in at top of page
+    -->
+    <script src="scripts.js"></script>
+</body>
+
+</html>
