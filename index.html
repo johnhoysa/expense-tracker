@@ -14,8 +14,8 @@
         <h2 id="balance" class="balance">Balance: JS Value Here</h2>
         <div class="add-expense">
             <select name="etType" id="etType" aria-label="Type">
-                <option value="income">Income</option>
                 <option value="expense">Expense</option>
+                <option value="income">Income</option>
             </select>
             <input type="text" name="description" id="etDesc" maxlength="100" placeholder="Description">
             <input type="number" name="amount" id="etAmount" maxlength="100" placeholder="Amount">
@@ -27,12 +27,14 @@
                 <section>
 
                 </section>
+                <p class="result-total">Total <span id="expenseTotal"></span></p>
             </div>
             <div id="etIncome" class="result">
                 <h3 class="result-heading">Income</h3>
                 <section>
 
                 </section>
+                <p class="result-total">Total <span id="incomeTotal"></span></p>
             </div>
         </div>
     </main>
@@ -40,6 +42,7 @@
          1 hour for basic html structure and css names
          1 hour JS for basics of showing content
             included being distracted
+        45 minutes - get total distracted as well
 
             To do next: 
                 Set up git for this project
