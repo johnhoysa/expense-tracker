@@ -38,8 +38,13 @@ main {
 }
 
 .result-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    display: grid;
+    gap:16px;
+    grid-template-columns: repeat(4,1fr);
     margin-top: 16px;
+}
+.result-total {
+    font-weight: bold;
+    margin-top: 16px;
+    text-align: right;
 }
