@@ -4,6 +4,7 @@ const etType = document.getElementById("etType");
 const etDesc = document.getElementById("etDesc");
 const etAmount = document.getElementById("etAmount");
 const etAdd = document.getElementById("etAdd");
+let etDeleteButtons;
 // display data
 const etExpense = document.querySelector("#etExpense section");
 const etIncome = document.querySelector("#etIncome section");
@@ -25,16 +26,12 @@ etAdd.addEventListener("click", () => {
   getTotalBalance();
 });
 
-let type;
-let desc;
-let amount;
-
-// the function to run after clicking add
+// run after clicking add
 function addItem() {
   // get values to add
-  type = etType.value;
-  desc = etDesc.value;
-  amount = etAmount.value;
+  let type = etType.value;
+  let desc = etDesc.value;
+  let amount = etAmount.value;
   // get date and format it
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, "0");
@@ -48,7 +45,7 @@ function addItem() {
         <li class="desc">${desc}</li>
         <li class="amount">${amount}</li>
         <li class="date">${today}</li>
-        <li><button class="deleteEt" type="submit">Delete</button></li>
+        <li><button class="etDelete" type="submit">Delete</button></li>
     </ul>
     `;
 
@@ -59,6 +56,8 @@ function addItem() {
     etIncome.innerHTML += currentEt;
   }
 }
+
+// run after clicking Delete
 
 function resetForm() {
   etType.value = "expense";
