@@ -59,19 +59,24 @@ function addItem() {
 }
 
 function deleteItem() {
-  //const elements = document.querySelectorAll(".etDelete");
-
-  // Loop through each element
-  elements.forEach((element) => {
-    // Add a click event listener to each element
-    element.addEventListener("click", function () {
-      // Remove the clicked element from the DOM
-      console.log("something was clicked");
-      const li = this.parentElement;
-      const ul = li.parentElement;
-      ul.remove();
+  if (document.querySelectorAll(".etDelete")) {
+    // Loop through each element
+    const elements = document.querySelectorAll(".etDelete");
+    elements.forEach((element) => {
+      // Add a click event listener to each element
+      element.addEventListener("click", function () {
+        // Remove the clicked element from the DOM
+        console.log("something was clicked");
+        const li = this.parentElement;
+        const ul = li.parentElement;
+        ul.remove();
+        //   //
+        getTotalExpense();
+        getTotalIncome();
+        getTotalBalance();
+      });
     });
-  });
+  }
 }
 
 function resetForm() {
@@ -111,4 +116,9 @@ function getTotalBalance() {
 
   totalBalance = totalIncome - totalExpense;
   document.getElementById("balanceTotal").textContent = `${totalBalance}`;
+  if (totalBalance <= -1) {
+    document.getElementById("balanceTotal").classList.add("negative");
+  } else {
+    document.getElementById("balanceTotal").classList.remove("negative");
+  }
 }
