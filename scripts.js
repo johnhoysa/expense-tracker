@@ -55,9 +55,24 @@ function addItem() {
   } else {
     etIncome.innerHTML += currentEt;
   }
+  deleteItem();
 }
 
-// run after clicking Delete
+function deleteItem() {
+  //const elements = document.querySelectorAll(".etDelete");
+
+  // Loop through each element
+  elements.forEach((element) => {
+    // Add a click event listener to each element
+    element.addEventListener("click", function () {
+      // Remove the clicked element from the DOM
+      console.log("something was clicked");
+      const li = this.parentElement;
+      const ul = li.parentElement;
+      ul.remove();
+    });
+  });
+}
 
 function resetForm() {
   etType.value = "expense";
