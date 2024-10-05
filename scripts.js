@@ -48,7 +48,7 @@ function addItem() {
 
   // create content to display
   const currentEt = `
-    <ul class="result-content">
+    <ul class="result-content fade-in">
         <li class="desc">${desc}</li>
         <li class="amount">${amount}$</li>
         <li class="date">${formattedDate}</li>
@@ -88,6 +88,8 @@ function resetForm() {
   etType.value = "expense";
   etDesc.value = "";
   etAmount.value = "";
+  // focus back on description
+  etDesc.focus();
 }
 
 function displayUi() {
