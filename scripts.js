@@ -11,6 +11,12 @@ const etIncome = document.querySelector("#etIncome section");
 const expenseTotal = document.getElementById("expenseTotal");
 const incomeTotal = document.getElementById("incomeTotal");
 const balanceTotal = document.getElementById("balanceTotal");
+//
+const balanceUi = document.getElementById("balance");
+const resultUi = document.querySelector(".results");
+const expenseUi = document.getElementById("etExpense");
+const incomeUi = document.getElementById("etIncome");
+
 // Items to help with calculations
 let totalExpense = 0;
 let totalIncome = 0;
@@ -21,6 +27,7 @@ if (etAdd) {
   // when user clicks Add run theses function
   etAdd.addEventListener("click", () => {
     addItem();
+    displayUi();
     resetForm();
     updateTotals();
   });
@@ -52,8 +59,10 @@ function addItem() {
   // Tell content where to go
   if (type === "expense") {
     etExpense.innerHTML += currentEt;
+    expenseUi.classList.add("display-block");
   } else {
     etIncome.innerHTML += currentEt;
+    incomeUi.classList.add("display-block");
   }
   deleteItem();
 }
@@ -79,6 +88,12 @@ function resetForm() {
   etType.value = "expense";
   etDesc.value = "";
   etAmount.value = "";
+}
+
+function displayUi() {
+  if (!balanceUi || !resultUi) return;
+  balanceUi.classList.add("display-block");
+  resultUi.classList.add("display-flex");
 }
 
 // Get todays date

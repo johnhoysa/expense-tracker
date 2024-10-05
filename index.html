@@ -5,34 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expanse Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css-reset.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <main>
-        <h2 class="balance">Balance: <span id="balanceTotal"></span></h2>
+        <h2 id="instructions" class="instructions">Enter Expenese or Income</h2>
+        <h3 id="balance" class="balance">Balance: <span id="balanceTotal"></span></h3>
         <div class="add-expense">
             <select name="etType" id="etType" aria-label="Type">
                 <option value="expense">Expense</option>
                 <option value="income">Income</option>
             </select>
             <input type="text" name="description" id="etDesc" maxlength="100" placeholder="Description">
-            <input type="number" name="amount" id="etAmount" maxlength="100" placeholder="Amount">
+            <input type="number" name="amount" id="etAmount" maxlength="100" placeholder="$ Amount">
             <button type="submit" id="etAdd">Add</button>
         </div>
         <div class="results">
             <div id="etExpense" class="result">
-                <h3 class="result-heading">Expense</h3>
                 <section>
-
+                    <h3 class="result-heading">Expense</h3>
                 </section>
                 <p class="result-total">Total $<span id="expenseTotal"></span></p>
             </div>
             <div id="etIncome" class="result">
-                <h3 class="result-heading">Income</h3>
                 <section>
-
+                    <h3 class="result-heading">Income</h3>
                 </section>
                 <p class="result-total">Total $<span id="incomeTotal"></span></p>
             </div>
