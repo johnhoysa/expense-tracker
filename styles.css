@@ -1,16 +1,39 @@
 
+/* 
+'dirt':'#23201A',
+ 'dirt-400': '#292622',
+ 'dirt-300': '#312F2B',
+ 'pine-cone':'#EE684A',
+ 'northern-lights':'#9CE7DB',
+*/
 
+body {
+    background-color: #23201a;
+    font-family: "Rubik", sans-serif;
+    font-size: 16px;
+}
 main {
     margin: 24px auto 0;
     max-width: 1000px;
     padding: 24px;
 }
 
+/* hide on load */
+.instructions,
 .balance {
+    color:white;
+    display: none; 
     font-size: 24px;
     text-align: center;
 }
 
+.instructions {
+    display: block;
+}
+
+.balance {
+    margin-top: 24px;
+}
 .add-expense {
     display: flex;
     flex-wrap: wrap;
@@ -19,37 +42,84 @@ main {
     max-width: 800px;
 }
 
+.add-expense select,
+.add-expense input {
+   padding: 4px 8px;
+}
+
+.add-expense button,
+.result button {
+    background-color: #9CE7DB;
+    padding: 4px 8px;
+    font-weight: 900;
+    border-color: #312F2B;
+    border-radius: 4px;
+
+}
+
+/* hide on load */
 .results {
-    display: flex;
+    display: none;
     justify-content: space-around;
     gap: 24px;
     margin: 24px 0 0;
+    @media screen and (max-width: 767px) {
+        flex-direction: column;
+    }
 }
 
+/* hide on load */
 .result {
-    border:1px solid black;
+    background-color: #312F2B;
+    border:1px solid #23201A;
+    display: none;
     padding: 16px;
     width: 100%;
 
 }
 
 .result-heading {
+    color: #EE684A;
     text-align: center;
 }
 
 .result-content {
+    color: white;
     display: grid;
     gap:16px;
     grid-template-columns: repeat(4,1fr);
     margin-top: 16px;
 }
 .result-total {
+    color: #9CE7DB;
     font-weight: bold;
     margin-top: 16px;
     text-align: right;
+
 }
 
 /* Helper classes */
-.negative {
-    color: red;
+.display-block {
+    display: block;
 }
+.display-flex {
+    display: flex;
+}
+.negative {
+    color: #EE684A;
+}
+
+/* Animations */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+  }
+  
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
