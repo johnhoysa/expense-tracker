@@ -1,55 +1,55 @@
 // et prefix short for expense tracker
-// get user inputted data
+// create variables
+// get inputs to collect user information
 const etType = document.getElementById("etType");
 const etDesc = document.getElementById("etDesc");
 const etAmount = document.getElementById("etAmount");
 const etAdd = document.getElementById("etAdd");
-let etDeleteButtons;
-// display data
+//
 const etExpense = document.querySelector("#etExpense section");
 const etIncome = document.querySelector("#etIncome section");
-let expenseTotal = document.getElementById("expenseTotal");
-let incomeTotal = document.getElementById("incomeTotal");
+const expenseTotal = document.getElementById("expenseTotal");
+const incomeTotal = document.getElementById("incomeTotal");
+const balanceTotal = document.getElementById("balanceTotal");
+// Items to help with calculations
+let totalExpense = 0;
+let totalIncome = 0;
+let totalBalance = 0;
 
-// do math
-let totalExpense;
-let totalIncome;
-let totalBalance;
-let balanceTotal = document.getElementById("balanceTotal");
+// ensure element is not null
+if (etAdd) {
+  // when user clicks Add run theses function
+  etAdd.addEventListener("click", () => {
+    addItem();
+    resetForm();
+    updateTotals();
+  });
+}
 
-// when user clicks Add run theses function
-etAdd.addEventListener("click", () => {
-  addItem();
-  resetForm();
-  getTotalExpense();
-  getTotalIncome();
-  getTotalBalance();
-});
-
-// run after clicking add
+// Get values from inputs
 function addItem() {
-  // get values to add
-  let type = etType.value;
-  let desc = etDesc.value;
-  let amount = etAmount.value;
-  // get date and format it
-  let today = new Date();
-  let dd = String(today.getDate()).padStart(2, "0");
-  let mm = String(today.getMonth() + 1).padStart(2, "0"); // January is 0!
-  let yyyy = today.getFullYear();
-  today = mm + "/" + dd + "/" + yyyy;
+  // Ensure elements are not null
+  if (!etType || !etDesc || !etAmount) return;
 
-  // Create data to display
-  let currentEt = `
+  // get values
+  const type = etType.value;
+  const desc = etDesc.value;
+  const amount = etAmount.value;
+
+  // get date from other function
+  const formattedDate = getFormattedDate();
+
+  // create content to display
+  const currentEt = `
     <ul class="result-content">
         <li class="desc">${desc}</li>
         <li class="amount">${amount}</li>
-        <li class="date">${today}</li>
+        <li class="date">${formattedDate}</li>
         <li><button class="etDelete" type="submit">Delete</button></li>
     </ul>
     `;
 
-  // Tell data where to go
+  // Tell content where to go
   if (type === "expense") {
     etExpense.innerHTML += currentEt;
   } else {
@@ -58,67 +58,79 @@ function addItem() {
   deleteItem();
 }
 
+// If user clicks delete do the following
 function deleteItem() {
-  if (document.querySelectorAll(".etDelete")) {
-    // Loop through each element
-    const elements = document.querySelectorAll(".etDelete");
-    elements.forEach((element) => {
-      // Add a click event listener to each element
-      element.addEventListener("click", function () {
-        // Remove the clicked element from the DOM
-        console.log("something was clicked");
-        const li = this.parentElement;
-        const ul = li.parentElement;
-        ul.remove();
-        //   //
-        getTotalExpense();
-        getTotalIncome();
-        getTotalBalance();
-      });
+  const elements = document.querySelectorAll(".etDelete");
+  elements.forEach((element) => {
+    element.addEventListener("click", function () {
+      // delete the element
+      const li = this.parentElement;
+      const ul = li.parentElement;
+      ul.remove();
+      // get new totals
+      updateTotals();
     });
-  }
+  });
 }
 
+// After clicking add result field values
 function resetForm() {
+  if (!etType || !etDesc || !etAmount) return;
   etType.value = "expense";
   etDesc.value = "";
   etAmount.value = "";
 }
+
+// Get todays date
+function getFormattedDate() {
+  const today = new Date();
+  const dd = String(today.getDate()).padStart(1, "0");
+  const mm = String(today.getMonth() + 1).padStart(1, "0");
+  const yy = today.getFullYear().toString().slice(-2);
+  return `${dd}/${mm}/${yy}`;
+}
+
+// collect all functions related to getting totals
+function updateTotals() {
+  getTotalExpense();
+  getTotalIncome();
+  getTotalBalance();
+}
+
 // Get total
 function getTotalExpense() {
+  if (!expenseTotal) return;
   totalExpense = 0;
-  // might want to check if my element exists
-  let getAmounts = document.querySelectorAll("#etExpense .amount");
-  getAmounts.forEach(function (amount) {
-    currentAmount = parseFloat(amount.innerHTML);
-    totalExpense += parseFloat(currentAmount);
+  const getAmounts = document.querySelectorAll("#etExpense .amount");
+  getAmounts.forEach((amount) => {
+    const currentAmount = parseFloat(amount.innerHTML);
+    totalExpense += currentAmount;
   });
-  document.getElementById("expenseTotal").textContent = `${totalExpense}`;
+  expenseTotal.textContent = `${totalExpense}`;
 }
 
 // Get total
 function getTotalIncome() {
+  if (!incomeTotal) return;
   totalIncome = 0;
   // might want to check if my element exists
-  let getAmounts = document.querySelectorAll("#etIncome .amount");
+  const getAmounts = document.querySelectorAll("#etIncome .amount");
 
-  getAmounts.forEach(function (amount) {
-    currentAmount = parseFloat(amount.innerHTML);
-    totalIncome += parseFloat(currentAmount);
+  getAmounts.forEach((amount) => {
+    const currentAmount = parseFloat(amount.innerHTML);
+    totalIncome += currentAmount;
   });
-  document.getElementById("incomeTotal").textContent = `${totalIncome}`;
+  incomeTotal.textContent = `${totalIncome}`;
 }
 
 // Balance total
 function getTotalBalance() {
-  totalBalance = 0;
-  // get total from income and expense. Show total even if negative
-
+  if (!balanceTotal) return;
   totalBalance = totalIncome - totalExpense;
-  document.getElementById("balanceTotal").textContent = `${totalBalance}`;
+  balanceTotal.textContent = `${totalBalance}`;
   if (totalBalance <= -1) {
-    document.getElementById("balanceTotal").classList.add("negative");
+    balanceTotal.classList.add("negative");
   } else {
-    document.getElementById("balanceTotal").classList.remove("negative");
+    balanceTotal.classList.remove("negative");
   }
 }
