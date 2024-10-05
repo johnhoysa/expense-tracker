@@ -50,7 +50,7 @@ function addItem() {
   const currentEt = `
     <ul class="result-content">
         <li class="desc">${desc}</li>
-        <li class="amount">${amount}</li>
+        <li class="amount">${amount}$</li>
         <li class="date">${formattedDate}</li>
         <li><button class="etDelete" type="submit">Delete</button></li>
     </ul>
@@ -59,10 +59,10 @@ function addItem() {
   // Tell content where to go
   if (type === "expense") {
     etExpense.innerHTML += currentEt;
-    expenseUi.classList.add("display-block");
+    expenseUi.classList.add("display-block", "fade-in");
   } else {
     etIncome.innerHTML += currentEt;
-    incomeUi.classList.add("display-block");
+    incomeUi.classList.add("display-block", "fade-in");
   }
   deleteItem();
 }
@@ -92,8 +92,8 @@ function resetForm() {
 
 function displayUi() {
   if (!balanceUi || !resultUi) return;
-  balanceUi.classList.add("display-block");
-  resultUi.classList.add("display-flex");
+  balanceUi.classList.add("display-block", "fade-in");
+  resultUi.classList.add("display-flex", "fade-in");
 }
 
 // Get todays date
