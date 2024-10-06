@@ -1,6 +1,5 @@
 // et prefix short for expense tracker
 // create variables
-// get inputs to collect user information
 const etType = document.getElementById("etType");
 const etDesc = document.getElementById("etDesc");
 const etAmount = document.getElementById("etAmount");
@@ -18,7 +17,7 @@ const resultUi = document.querySelector(".results");
 const expenseUi = document.getElementById("etExpense");
 const incomeUi = document.getElementById("etIncome");
 
-// Items to help with calculations
+// help with calculations
 let totalExpense = 0;
 let totalIncome = 0;
 let totalBalance = 0;
@@ -58,7 +57,7 @@ function addItem() {
     </ul>
     `;
 
-  // Tell content where to go
+  // tell content where to go
   if (type === "expense") {
     etExpense.innerHTML += currentEt;
     expenseUi.classList.add("display-block", "fade-in");
@@ -82,15 +81,14 @@ function deleteItem() {
       //
       setTimeout(() => {
         ul.remove();
+        // get new totals
         updateTotals();
       }, 1000);
-
-      // get new totals
     });
   });
 }
 
-// After clicking add result field values
+// reset form fields and focus back to description field
 function resetForm() {
   if (!etType || !etDesc || !etAmount) return;
   etType.value = "expense";
@@ -100,6 +98,7 @@ function resetForm() {
   etDesc.focus();
 }
 
+// fade items in or out as data is displayed
 function displayUi() {
   if (!balanceUi || !resultUi) return;
   instructionsUi.classList.add("fade-out");
@@ -108,7 +107,7 @@ function displayUi() {
   resultUi.classList.add("display-flex", "fade-in");
 }
 
-// Get todays date
+// get todays date and format it
 function getFormattedDate() {
   const today = new Date();
   const dd = String(today.getDate()).padStart(1, "0");
@@ -117,14 +116,14 @@ function getFormattedDate() {
   return `${dd}/${mm}/${yy}`;
 }
 
-// collect all functions related to getting totals
+// collect function related to totals
 function updateTotals() {
   getTotalExpense();
   getTotalIncome();
   getTotalBalance();
 }
 
-// Get total
+// expense, get total
 function getTotalExpense() {
   if (!expenseTotal) return;
   totalExpense = 0;
@@ -136,13 +135,11 @@ function getTotalExpense() {
   expenseTotal.textContent = `${totalExpense}`;
 }
 
-// Get total
+// income, get total
 function getTotalIncome() {
   if (!incomeTotal) return;
   totalIncome = 0;
-  // might want to check if my element exists
   const getAmounts = document.querySelectorAll("#etIncome .amount");
-
   getAmounts.forEach((amount) => {
     const currentAmount = parseFloat(amount.innerHTML);
     totalIncome += currentAmount;
@@ -150,7 +147,7 @@ function getTotalIncome() {
   incomeTotal.textContent = `${totalIncome}`;
 }
 
-// Balance total
+// balance, get total
 function getTotalBalance() {
   if (!balanceTotal) return;
   totalBalance = totalIncome - totalExpense;
