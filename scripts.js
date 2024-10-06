@@ -12,6 +12,7 @@ const expenseTotal = document.getElementById("expenseTotal");
 const incomeTotal = document.getElementById("incomeTotal");
 const balanceTotal = document.getElementById("balanceTotal");
 //
+const instructionsUi = document.getElementById("instructions");
 const balanceUi = document.getElementById("balance");
 const resultUi = document.querySelector(".results");
 const expenseUi = document.getElementById("etExpense");
@@ -29,6 +30,7 @@ if (etAdd) {
     addItem();
     displayUi();
     resetForm();
+    deleteItem();
     updateTotals();
   });
 }
@@ -48,7 +50,7 @@ function addItem() {
 
   // create content to display
   const currentEt = `
-    <ul class="result-content">
+    <ul class="result-content fade-in">
         <li class="desc">${desc}</li>
         <li class="amount">${amount}$</li>
         <li class="date">${formattedDate}</li>
@@ -64,7 +66,6 @@ function addItem() {
     etIncome.innerHTML += currentEt;
     incomeUi.classList.add("display-block", "fade-in");
   }
-  deleteItem();
 }
 
 // If user clicks delete do the following
@@ -72,12 +73,19 @@ function deleteItem() {
   const elements = document.querySelectorAll(".etDelete");
   elements.forEach((element) => {
     element.addEventListener("click", function () {
-      // delete the element
+      // get element then parent element
       const li = this.parentElement;
       const ul = li.parentElement;
-      ul.remove();
+      //
+      ul.classList.remove("fade-in");
+      ul.classList.add("fade-out");
+      //
+      setTimeout(() => {
+        ul.remove();
+        updateTotals();
+      }, 1000);
+
       // get new totals
-      updateTotals();
     });
   });
 }
@@ -88,10 +96,14 @@ function resetForm() {
   etType.value = "expense";
   etDesc.value = "";
   etAmount.value = "";
+  // focus back on description
+  etDesc.focus();
 }
 
 function displayUi() {
   if (!balanceUi || !resultUi) return;
+  instructionsUi.classList.add("fade-out");
+  balanceUi.classList.add("display-block", "fade-in");
   balanceUi.classList.add("display-block", "fade-in");
   resultUi.classList.add("display-flex", "fade-in");
 }

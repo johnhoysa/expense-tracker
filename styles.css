@@ -1,125 +1,270 @@
-
-/* 
-'dirt':'#23201A',
- 'dirt-400': '#292622',
- 'dirt-300': '#312F2B',
- 'pine-cone':'#EE684A',
- 'northern-lights':'#9CE7DB',
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
 */
 
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
 body {
-    background-color: #23201a;
-    font-family: "Rubik", sans-serif;
-    font-size: 16px;
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/* Reset End */
+
+:root {
+  --dirt: #23201a;
+  --dirt-400: #292622;
+  --dirt-300: #312f2b;
+  --pine-cone: #ee684a;
+  --northern-lights: #9ce7db;
+  --white: #fff;
+}
+
+body {
+  background-color: var(--dirt);
+  font-family: "Rubik", sans-serif;
+  font-size: 16px;
 }
 main {
-    margin: 24px auto 0;
-    max-width: 1000px;
-    padding: 24px;
+  margin: 24px auto 0;
+  max-width: 1000px;
+  padding: 24px;
 }
 
 /* hide on load */
 .instructions,
 .balance {
-    color:white;
-    display: none; 
-    font-size: 24px;
-    text-align: center;
+  color: var(--white);
+  display: none;
+  font-size: 24px;
+  text-align: center;
 }
 
 .instructions {
-    display: block;
+  display: block;
 }
 
 .balance {
-    margin-top: 24px;
+  margin-top: 24px;
 }
 .add-expense {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 24px 0 0;
-    max-width: 800px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 24px 0 0;
+  max-width: 800px;
 }
 
 .add-expense select,
 .add-expense input {
-   padding: 4px 8px;
+  padding: 4px 8px;
 }
 
 .add-expense button,
 .result button {
-    background-color: #9CE7DB;
-    padding: 4px 8px;
-    font-weight: 900;
-    border-color: #312F2B;
-    border-radius: 4px;
-
+  background-color: var(--northern-lights);
+  padding: 4px 8px;
+  font-weight: 900;
+  border: 1px solid var(--dirt-300);
+  border-radius: 4px;
 }
 
 /* hide on load */
 .results {
-    display: none;
-    justify-content: space-around;
-    gap: 24px;
-    margin: 24px 0 0;
-    @media screen and (max-width: 767px) {
-        flex-direction: column;
-    }
+  display: none;
+  justify-content: space-around;
+  gap: 24px;
+  margin: 24px 0 0;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+  }
 }
 
 /* hide on load */
 .result {
-    background-color: #312F2B;
-    border:1px solid #23201A;
-    display: none;
-    padding: 16px;
-    width: 100%;
-
+  background-color: var(--dirt-300);
+  border: 1px solid var(--dirt);
+  display: none;
+  padding: 16px;
+  width: 100%;
 }
 
 .result-heading {
-    color: #EE684A;
-    text-align: center;
+  color: var(--pine-cone);
+  text-align: center;
 }
 
 .result-content {
-    color: white;
-    display: grid;
-    gap:16px;
-    grid-template-columns: repeat(4,1fr);
-    margin-top: 16px;
+  color: var(--white);
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 16px;
 }
-.result-total {
-    color: #9CE7DB;
-    font-weight: bold;
-    margin-top: 16px;
-    text-align: right;
 
+.result-total {
+  color: var(--northern-lights);
+  font-weight: bold;
+  margin-top: 16px;
+  text-align: right;
 }
 
 /* Helper classes */
 .display-block {
-    display: block;
+  display: block;
 }
 .display-flex {
-    display: flex;
+  display: flex;
 }
 .negative {
-    color: #EE684A;
+  color: var(--pine-cone);
 }
 
 /* Animations */
 .fade-in {
-    opacity: 0;
-    animation: fadeIn 2s forwards;
-  }
-  
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+.fade-out {
+  opacity: 0;
+  animation: fadeOut 1s forwards;
+}
+
 @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  from {
+    opacity: 0;
   }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    height: auto;
+  }
+  to {
+    opacity: 0;
+    height: 0;
+  }
+}
