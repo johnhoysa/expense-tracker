@@ -12,6 +12,7 @@ const expenseTotal = document.getElementById("expenseTotal");
 const incomeTotal = document.getElementById("incomeTotal");
 const balanceTotal = document.getElementById("balanceTotal");
 //
+const instructionsUi = document.getElementById("instructions");
 const balanceUi = document.getElementById("balance");
 const resultUi = document.querySelector(".results");
 const expenseUi = document.getElementById("etExpense");
@@ -29,6 +30,7 @@ if (etAdd) {
     addItem();
     displayUi();
     resetForm();
+    deleteItem();
     updateTotals();
   });
 }
@@ -64,7 +66,6 @@ function addItem() {
     etIncome.innerHTML += currentEt;
     incomeUi.classList.add("display-block", "fade-in");
   }
-  deleteItem();
 }
 
 // If user clicks delete do the following
@@ -72,12 +73,19 @@ function deleteItem() {
   const elements = document.querySelectorAll(".etDelete");
   elements.forEach((element) => {
     element.addEventListener("click", function () {
-      // delete the element
+      // get element then parent element
       const li = this.parentElement;
       const ul = li.parentElement;
-      ul.remove();
+      //
+      ul.classList.remove("fade-in");
+      ul.classList.add("fade-out");
+      //
+      setTimeout(() => {
+        ul.remove();
+        updateTotals();
+      }, 1000);
+
       // get new totals
-      updateTotals();
     });
   });
 }
@@ -94,6 +102,8 @@ function resetForm() {
 
 function displayUi() {
   if (!balanceUi || !resultUi) return;
+  instructionsUi.classList.add("fade-out");
+  balanceUi.classList.add("display-block", "fade-in");
   balanceUi.classList.add("display-block", "fade-in");
   resultUi.classList.add("display-flex", "fade-in");
 }
