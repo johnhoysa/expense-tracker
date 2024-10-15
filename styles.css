@@ -144,7 +144,7 @@ table {
 body {
   background-color: var(--dirt);
   font-family: "Rubik", sans-serif;
-  font-size: 16px;
+  font-size: 21px;
 }
 
 main {
@@ -180,13 +180,16 @@ main {
 
 .add-expense select,
 .add-expense input {
-  padding: 4px 8px;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 16px;
 }
 
 .add-expense button,
 .result button {
   background-color: var(--northern-lights);
-  padding: 4px 8px;
+  padding: 8px 16px;
+  font-size: 16px;
   font-weight: 900;
   border: 1px solid var(--dirt-300);
   border-radius: 4px;
@@ -213,11 +216,13 @@ main {
 }
 
 .result-heading {
+  font-size: 21px;
   color: var(--pine-cone);
   text-align: center;
 }
 
 .result-content {
+  align-items: center;
   color: var(--white);
   display: grid;
   gap: 16px;
@@ -225,8 +230,13 @@ main {
   margin-top: 16px;
 }
 
+.result-content .desc {
+  text-transform: capitalize;
+}
+
 .result-total {
   color: var(--northern-lights);
+  font-size: 18px;
   font-weight: bold;
   margin-top: 16px;
   text-align: right;
