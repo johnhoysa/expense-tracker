@@ -47,6 +47,12 @@ function addItem() {
   // get date from other function
   const formattedDate = getFormattedDate();
 
+  // Save items to localStorage
+  const item = { desc, amount, date: formattedDate };
+  let items = JSON.parse(localStorage.getItem(type)) || [];
+  items.push(item);
+  localStorage.setItem(type, JSON.stringify(items));
+
   // create content to display
   const currentEt = `
     <ul class="result-content fade-in">
@@ -108,6 +114,7 @@ function displayUi() {
 }
 
 // get todays date and format it
+//WHY IS THIS HERE?
 function getFormattedDate() {
   const today = new Date();
   const dd = String(today.getDate()).padStart(1, "0");
