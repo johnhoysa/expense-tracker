@@ -40,6 +40,7 @@ function addItem() {
   if (!etType || !etDesc || !etAmount) return;
 
   // get values
+  // Type is either expense or income
   const type = etType.value;
   const desc = etDesc.value;
   const amount = etAmount.value;
@@ -114,7 +115,6 @@ function displayUi() {
 }
 
 // get todays date and format it
-//WHY IS THIS HERE?
 function getFormattedDate() {
   const today = new Date();
   const dd = String(today.getDate()).padStart(1, "0");
