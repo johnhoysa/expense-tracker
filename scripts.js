@@ -48,15 +48,17 @@ function addItem() {
   // get date from other function
   const formattedDate = getFormattedDate();
 
+  // Generate a unique id for this item
+  const id = Date.now().toString() + Math.random().toString(36);
   // Save items to localStorage
-  const item = { desc, amount, date: formattedDate };
+  const item = { id, desc, amount, date: formattedDate };
   let items = JSON.parse(localStorage.getItem(type)) || [];
   items.push(item);
   localStorage.setItem(type, JSON.stringify(items));
 
-  // create content to display
+  // create content to display with unique id
   const currentEt = `
-    <ul class="result-content fade-in">
+    <ul class="result-content fade-in" data-id="${id}">
         <li class="desc">${desc}</li>
         <li class="amount">${amount}$</li>
         <li class="date">${formattedDate}</li>
@@ -85,6 +87,11 @@ function deleteItem() {
       //
       ul.classList.remove("fade-in");
       ul.classList.add("fade-out");
+      //
+      // Delete from local storage
+      // localStorage.removeItem("income"); // delets all items
+
+      //
       //
       setTimeout(() => {
         ul.remove();
